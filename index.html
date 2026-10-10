@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Happy Birthday Sudha Kumari! 🎂💛</title>
+  <meta name="description" content="A personalized interactive birthday surprise website for Sudha Kumari, created by Abhay.">
+  <meta name="theme-color" content="#fce7f3">
+  
+  <!-- Google Fonts: Poppins & Dancing Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Particle Canvas for Confetti & Sparkles -->
+  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+
+  <!-- Flying Balloons Sky Background (Continuous Rising Balloons) -->
+  <div id="balloons-sky" class="balloons-sky" aria-hidden="true"></div>
+
+  <!-- Hanging Glowing Fairy Lights Garland -->
+  <div class="fairy-lights-garland" aria-hidden="true">
+    <span class="bulb b1"></span>
+    <span class="bulb b2"></span>
+    <span class="bulb b3"></span>
+    <span class="bulb b4"></span>
+    <span class="bulb b5"></span>
+    <span class="bulb b6"></span>
+    <span class="bulb b7"></span>
+    <span class="bulb b8"></span>
+    <span class="bulb b9"></span>
+    <span class="bulb b10"></span>
+  </div>
+
+  <!-- Top Floating Status Bar: Step Indicator & Music Control -->
+  <header class="app-header">
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 14.28%;"></div>
+      </div>
+      <div class="steps-indicator">
+        <span class="step-badge active" data-step="1">1</span>
+        <span class="step-badge" data-step="2">2</span>
+        <span class="step-badge" data-step="3">3</span>
+        <span class="step-badge" data-step="4">4</span>
+        <span class="step-badge" data-step="5">5</span>
+        <span class="step-badge" data-step="6">6</span>
+        <span class="step-badge" data-step="7">7</span>
+      </div>
+    </div>
+
+    <!-- Music Player Controller -->
+    <div class="music-controls">
+      <button id="music-toggle-btn" class="music-btn" aria-label="Toggle background music" title="Play / Pause Music">
+        <span class="music-icon" id="music-icon">🎵</span>
+        <span class="music-label" id="music-label">Music: Off</span>
+        <span class="sound-wave" id="sound-wave">
+          <i></i><i></i><i></i><i></i>
+        </span>
+      </button>
+      <audio id="bg-audio" preload="auto" loop src="assets/audio/birthday-piano.wav"></audio>
+      <audio id="cake-cut-audio" preload="auto" loop>
+        <source src="assets/audio/cake-song.webm" type="audio/webm">
+        <source src="assets/audio/cake-song.m4a" type="audio/mp4">
+      </audio>
+    </div>
+  </header>
+
+  <!-- Main Multi-Screen Container -->
+  <main class="screens-container" id="screens-container">
+
+    <!-- ========================================== -->
+    <!-- SCREEN 1: THE MAIN BIRTHDAY COVER 🎂       -->
+    <!-- ========================================== -->
+    <section id="screen-1" class="screen-view active" data-screen="1">
+      <div class="screen-content cover-content">
+        <!-- Floating Ambient Balloons & Sparkles -->
+        <div class="floating-balloon-decor decor-1">🎈</div>
+        <div class="floating-balloon-decor decor-2">✨</div>
+        <div class="floating-balloon-decor decor-3">🎈</div>
+        <div class="floating-balloon-decor decor-4">🌸</div>
+
+        <!-- Birthday Sub-badge -->
+        <div class="pill-tag animate-bounce-subtle">
+          <span>✨ Special Friendship Celebration ✨</span>
+        </div>
+
+        <h1 class="main-title">
+          HAPPY BIRTHDAY! <span class="emoji-bounce">🎂</span>
+        </h1>
+
+        <h2 class="recipient-name">
+          Sudha Kumari <span class="heart-pulse">💛</span>
+        </h2>
+
+        <!-- Featured Portrait of Sudha Kumari -->
+        <div class="photo-frame-wrapper">
+          <div class="ornate-glow-ring"></div>
+          <div class="floral-wreath-decor">
+            <span class="wreath-star s1">✨</span>
+            <span class="wreath-star s2">✨</span>
+            <span class="wreath-star s3">⭐</span>
+          </div>
+          <div class="featured-portrait-frame">
+            <img 
+              id="cover-photo"
+              src="assets/images/sudha-01.jpg" 
+              alt="Sudha Kumari Birthday Celebration" 
+              class="portrait-img"
+              loading="eager"
+            >
+            <div class="frame-tag">Today's Birthday Star ⭐</div>
+          </div>
+        </div>
+
+        <p class="subtitle-text">
+          A little birthday surprise for a wonderful friend!
+        </p>
+
+        <!-- Primary Action Button -->
+        <div class="action-footer">
+          <button id="btn-open-surprise" class="btn btn-primary btn-sparkle" aria-label="Open your birthday surprise">
+            <span class="btn-text">Open Your Birthday Surprise 🎁</span>
+            <span class="btn-shine"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 2: BIRTHDAY CELEBRATION 🎉          -->
+    <!-- ========================================== -->
+    <section id="screen-2" class="screen-view" data-screen="2">
+      <div class="screen-content celebration-content">
+        <div class="screen-nav-bar">
+          <button class="btn-back" data-goto="1" aria-label="Go back to screen 1">
+            ← Back
+          </button>
+          <span class="screen-step-tag">Step 2 of 7</span>
+        </div>
+
+        <div class="celebration-hero-card">
+          <div class="party-poppers">🎉 ✨ 🎈</div>
+          
+          <h2 class="section-title">
+            Today Is All About You! 🎂
+          </h2>
+
+          <!-- Beautiful Feature Photo of Sudha -->
+          <div class="screen-feature-photo-badge">
+            <div class="photo-badge-glow"></div>
+            <img src="assets/images/sudha-04.jpg" alt="Sudha Kumari Birthday Joy" class="badge-photo-img" loading="lazy">
+            <span class="badge-photo-caption">🌸 Today's Birthday Girl 🌸</span>
+          </div>
+
+          <div class="cake-illustration-mini">
+            <div class="mini-candles">
+              <span class="mini-flame">🔥</span>
+              <span class="mini-flame">🔥</span>
+              <span class="mini-flame">🔥</span>
+            </div>
+            <div class="mini-cake-tier tier-top">🍓 🌸 🍓</div>
+            <div class="mini-cake-tier tier-base">🎂 Happy Birthday Sudha! 🎂</div>
+          </div>
+
+          <p class="warm-message">
+            May your day be filled with happiness, laughter, delicious cake, and unforgettable moments. You deserve a wonderful year ahead!
+          </p>
+
+          <!-- Make a Wish Interactive Section -->
+          <div class="wish-box" id="wish-box">
+            <button id="btn-make-wish" class="btn btn-accent" aria-label="Make a birthday wish">
+              Make a Birthday Wish ✨
+            </button>
+            <div id="wish-reveal" class="wish-reveal-box hidden">
+              <div class="wish-sparkle-stars">🌟 ⭐ ✨ ⭐ 🌟</div>
+              <p class="wish-quote">
+                "Close your eyes, make a wish, and believe in the beautiful things ahead!"
+              </p>
+              <div class="wish-confirmed-badge">✨ Wish Locked In! ✨</div>
+            </div>
+          </div>
+
+          <!-- Continue Navigation Button -->
+          <div class="action-footer mt-4">
+            <button id="btn-goto-cake" class="btn btn-primary btn-forward" aria-label="Go to cake cutting">
+              Time to Cut the Cake →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 3: THE CAKE-CUTTING CELEBRATION 🎂🎉 -->
+    <!-- ========================================== -->
+    <section id="screen-3" class="screen-view" data-screen="3">
+      <div class="screen-content cake-cutting-content">
+        <div class="screen-nav-bar">
+          <button class="btn-back" data-goto="2" aria-label="Go back to screen 2">
+            ← Back
+          </button>
+          <span class="screen-step-tag">Step 3 of 7</span>
+        </div>
+
+        <h2 class="section-title">
+          Time to Cut the Cake, Sudha! 🎂
+        </h2>
+
+        <p class="instruction-text">
+          Make a wish, get ready for a sweet moment, and let the birthday magic begin!
+        </p>
+
+        <!-- Real Cake-Cutting Interactive Stage -->
+        <div class="real-cake-cutting-stage" id="cake-stage">
+          <div class="cake-photo-card-wrapper">
+            <!-- Ornate Golden Glow Aura -->
+            <div class="golden-cake-aura"></div>
+            
+            <!-- Real Celebration Photo of Sudha with Cake on Page 3 -->
+            <div class="real-cake-photo-container">
+              <img 
+                src="assets/images/sudha-cake-page3.jpg" 
+                alt="Sudha Kumari holding her birthday cake" 
+                class="real-cake-photo-img"
+                id="real-cake-photo"
+              >
+              
+              <!-- Floating Animated Birthday Sparkles & Light Beam on the cake -->
+              <div class="cake-glow-overlay"></div>
+              
+              <!-- 5 Interactive Glowing Candle Flames positioned right on the cake candles -->
+              <div class="photo-candles-overlay" id="photo-candles-overlay">
+                <div class="photo-candle-flame f1" title="Candle 1">
+                  <span class="flame-core"></span>
+                </div>
+                <div class="photo-candle-flame f2" title="Candle 2">
+                  <span class="flame-core"></span>
+                </div>
+                <div class="photo-candle-flame f3" title="Candle 3">
+                  <span class="flame-core"></span>
+                </div>
+                <div class="photo-candle-flame f4" title="Candle 4">
+                  <span class="flame-core"></span>
+                </div>
+                <div class="photo-candle-flame f5" title="Candle 5">
+                  <span class="flame-core"></span>
+                </div>
+              </div>
+
+              <!-- Animated Knife Slice Laser Trail -->
+              <div class="knife-slice-effect" id="knife-slice-effect">
+                <div class="slice-laser-line"></div>
+                <div class="slice-knife-icon">🔪✨</div>
+              </div>
+
+              <!-- Popped Delicious Cake Slice on Cut -->
+              <div class="popped-cake-slice" id="popped-cake-slice">
+                <div class="slice-graphic">🍰</div>
+                <div class="slice-tag">Sudha's Cake Slice! 💛</div>
+              </div>
+
+              <!-- Photo Crown Badge -->
+              <div class="cake-hero-badge">👑 Birthday Star Sudha 🎂</div>
+            </div>
+          </div>
+
+          <!-- Celebration Badge Strip -->
+          <div class="celebration-badge-strip">
+            <span>🎈</span><span>🍰</span><span>✨</span><span>🧁</span><span>🎈</span>
+          </div>
+        </div>
+
+        <!-- Cutting Control Button -->
+        <div class="cake-controls">
+          <button id="btn-cut-cake" class="btn btn-special btn-sparkle" aria-label="Cut the birthday cake">
+            Cut the Cake 🎂
+          </button>
+        </div>
+
+        <!-- Post-Cut Result Announcement -->
+        <div id="cake-celebration-result" class="cake-result-box hidden">
+          <div class="party-firework-icons">🎉 💛 🎂 💛 🎉</div>
+          <h3 class="yay-heading">Yay! Happy Birthday, Sudha! 🎉💛</h3>
+          <p class="sweet-quote">Here is your first delicious slice! May life always be sweet and joyful! 🍰</p>
+          
+          <!-- Reveal Next Screen Button -->
+          <div class="action-footer mt-4">
+            <button id="btn-goto-memories" class="btn btn-primary btn-forward" aria-label="Proceed to photo memories">
+              Let's See Our Memories →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 4: THE MEMORY GALLERY 📸            -->
+    <!-- ========================================== -->
+    <section id="screen-4" class="screen-view" data-screen="4">
+      <div class="screen-content gallery-content">
+        <div class="screen-nav-bar">
+          <button class="btn-back" data-goto="3" aria-label="Go back to screen 3">
+            ← Back
+          </button>
+          <span class="screen-step-tag">Step 4 of 7</span>
+        </div>
+
+        <h2 class="section-title">
+          Beautiful Moments & Memories 💛
+        </h2>
+        
+        <p class="subtitle-text">
+          Every picture has its own little story.
+        </p>
+
+        <!-- Scrapbook Memory Grid (10 Photographs) -->
+        <div class="scrapbook-gallery-grid" id="scrapbook-grid">
+          <!-- Dynamically populated or rendered cleanly via HTML with fallback safety -->
+        </div>
+
+        <!-- Gallery Footer Message -->
+        <div class="memory-footer-note">
+          <p class="quote-italic">Some pictures make wonderful memories. ✨</p>
+        </div>
+
+        <!-- Proceed to Screen 5 -->
+        <div class="action-footer">
+          <button id="btn-goto-letter" class="btn btn-primary btn-forward" aria-label="Continue to your special message">
+            Continue to Your Special Message →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 5: A SPECIAL BIRTHDAY LETTER 💌     -->
+    <!-- ========================================== -->
+    <section id="screen-5" class="screen-view" data-screen="5">
+      <div class="screen-content letter-content">
+        <div class="screen-nav-bar">
+          <button class="btn-back" data-goto="4" aria-label="Go back to screen 4">
+            ← Back
+          </button>
+          <span class="screen-step-tag">Step 5 of 7</span>
+        </div>
+
+        <h2 class="section-title">
+          A Special Birthday Letter 💌
+        </h2>
+
+        <p class="instruction-text">
+          Written with heart and genuine wishes for a truly great friend.
+        </p>
+
+        <!-- Interactive Envelope Area -->
+        <div class="envelope-container" id="envelope-container">
+          <div class="envelope" id="envelope-element">
+            <div class="envelope-back"></div>
+            <div class="envelope-letter" id="envelope-letter">
+              <div class="letter-seal-stamp">💌</div>
+              <div class="letter-peek-text">To: Sudha Kumari 💛</div>
+            </div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap" id="envelope-flap"></div>
+            <div class="envelope-wax-badge" id="wax-badge">💛</div>
+          </div>
+
+          <button id="btn-open-letter" class="btn btn-accent btn-pulse-scale" aria-label="Open your birthday letter">
+            Open Your Letter 💌
+          </button>
+        </div>
+
+        <!-- Revealed Letter Card -->
+        <div id="opened-letter-card" class="letter-card-wrapper hidden">
+          <div class="vintage-paper-card">
+            <!-- Background Watermark Photo of Sudha with Soft Opacity -->
+            <div class="letter-bg-watermark" aria-hidden="true"></div>
+
+            <div class="letter-header-decor">
+              <span class="letter-corner">🌸</span>
+              <span class="letter-date">A Birthday Wish From The Heart</span>
+              <span class="letter-corner">🌸</span>
+            </div>
+
+            <!-- Mini Polaroid Keepsake Pinned to Letter -->
+            <div class="letter-polaroid-keepsake">
+              <div class="paperclip-icon">📎</div>
+              <img src="assets/images/sudha-letter.jpg" alt="Sudha Kumari Memories" class="keepsake-img" loading="lazy">
+              <span class="keepsake-label">Sudha 💛</span>
+            </div>
+
+            <div class="letter-body" id="letter-body-text">
+              <p class="letter-salutation">Dear Sudha,</p>
+              
+              <p class="letter-para highlight-greeting">Happy Birthday! 🎂💛</p>
+              
+              <p class="letter-para">
+                I wanted to do something a little different for your birthday, so I made this small surprise especially for you.
+              </p>
+              
+              <p class="letter-para">
+                I wish you lots of happiness, success, good health, and countless reasons to smile. May you achieve your dreams, enjoy beautiful moments, and always find the strength to keep moving forward.
+              </p>
+              
+              <p class="letter-para">
+                Good friends and happy memories make life more beautiful. I hope your coming year brings you wonderful experiences, positive opportunities, and many moments worth remembering.
+              </p>
+              
+              <p class="letter-para">
+                Enjoy your special day, eat lots of cake, take beautiful pictures, and keep smiling!
+              </p>
+              
+              <p class="letter-para">
+                Once again, Happy Birthday, Sudha Kumari!
+              </p>
+              
+              <p class="letter-para highlight-closing">
+                Stay happy, stay blessed, and keep shining.
+              </p>
+              
+              <div class="letter-sign-off">
+                <span class="sign-label">Your friend,</span>
+                <span class="signature-name">Abhay 😊</span>
+              </div>
+            </div>
+
+            <div class="letter-actions">
+              <button id="btn-replay-letter" class="btn-replay-link" title="Replay letter animation">
+                🔄 Replay Letter Animation
+              </button>
+            </div>
+          </div>
+
+          <!-- Continue Navigation Button -->
+          <div class="action-footer mt-4">
+            <button id="btn-goto-gift" class="btn btn-primary btn-forward" aria-label="Discover your birthday gift">
+              Discover Your Birthday Gift →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 6: A SURPRISE GIFT 🎁               -->
+    <!-- ========================================== -->
+    <section id="screen-6" class="screen-view" data-screen="6">
+      <div class="screen-content gift-content">
+        <div class="screen-nav-bar">
+          <button class="btn-back" data-goto="5" aria-label="Go back to screen 5">
+            ← Back
+          </button>
+          <span class="screen-step-tag">Step 6 of 7</span>
+        </div>
+
+        <h2 class="section-title">
+          A Little Gift for You! 🎁
+        </h2>
+
+        <p class="instruction-text">
+          Wrapped with warmth, good wishes, and lots of positive vibes!
+        </p>
+
+        <!-- Interactive Gift Box -->
+        <div class="gift-box-stage" id="gift-stage">
+          <div class="gift-box" id="gift-box-element">
+            <!-- Gift Lid with Pink Ribbon & Bow -->
+            <div class="gift-lid" id="gift-lid">
+              <div class="gift-bow">
+                <span class="bow-left"></span>
+                <span class="bow-right"></span>
+                <span class="bow-center">🎀</span>
+              </div>
+              <div class="lid-ribbon"></div>
+            </div>
+            
+            <!-- Gift Box Base -->
+            <div class="gift-body">
+              <div class="gift-body-ribbon vertical"></div>
+              <div class="gift-body-ribbon horizontal"></div>
+              <div class="gift-glow-aura"></div>
+            </div>
+          </div>
+
+          <!-- Initial Open Button -->
+          <button id="btn-open-gift" class="btn btn-special btn-sparkle" aria-label="Open your gift box">
+            Open Your Gift 🎁
+          </button>
+        </div>
+
+        <!-- Revealed Gift Card & Note -->
+        <div id="gift-reveal-result" class="gift-card-reveal hidden">
+          <div class="gift-popup-card">
+            <div class="gift-card-stars">🌟 ✨ 💛 ✨ 🌟</div>
+            <div class="gift-badge-tag">Friendship Wish Capsule 💛</div>
+
+            <!-- Surprise Memory Keepsake in Gift -->
+            <div class="gift-surprise-card-inner">
+              <div class="gift-surprise-photo-frame">
+                <div class="gift-photo-glow"></div>
+                <img src="assets/images/sudha-gift-page6.jpg" alt="A Special Memory" class="gift-surprise-img" loading="lazy">
+              </div>
+              <div class="gift-photo-ribbon-badge">✨ A Special Blessing for Sudha 💛</div>
+            </div>
+
+            <p class="gift-message-text">
+              "Dear Sudha, this little digital gift comes with a big wish for your happiness. May your days be brighter, your dreams come closer, and your year be full of good surprises!"
+            </p>
+            <div class="gift-sparkle-decor">✨ 🎁 🌸 🎈 ✨</div>
+          </div>
+
+          <div class="final-anticipation-note">
+            <p class="anticipation-text">One Last Surprise Awaits... ✨</p>
+          </div>
+
+          <!-- Proceed to Screen 7 -->
+          <div class="action-footer mt-3">
+            <button id="btn-goto-final" class="btn btn-primary btn-forward" aria-label="See the final birthday wish">
+              See the Final Birthday Wish →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 7: THE FINAL BIRTHDAY WISH 🎂✨     -->
+    <!-- ========================================== -->
+    <section id="screen-7" class="screen-view" data-screen="7">
+      <div class="screen-content final-content">
+        <div class="screen-nav-bar">
+          <button class="btn-back" data-goto="6" aria-label="Go back to screen 6">
+            ← Back
+          </button>
+          <span class="screen-step-tag">Step 7 of 7 — Grand Finale</span>
+        </div>
+
+        <div class="finale-celebration-stars">⭐ 🌟 ✨ 💖 ✨ 🌟 ⭐</div>
+
+        <h2 class="grand-finale-title">
+          Happy Birthday, Sudha Kumari! <span class="heart-pulse">💛</span>
+        </h2>
+
+        <!-- Featured Final Portrait of Sudha -->
+        <div class="finale-portrait-container">
+          <div class="golden-sparkle-halo"></div>
+          <div class="finale-photo-frame">
+            <img 
+              id="finale-photo"
+              src="assets/images/sudha-02.jpg" 
+              alt="Sudha Kumari Grand Birthday Portrait" 
+              class="finale-img"
+              loading="eager"
+            >
+            <div class="birthday-crown-tag">👑 Birthday Girl 👑</div>
+          </div>
+        </div>
+
+        <!-- Heartfelt Final Closing Card -->
+        <div class="finale-card">
+          <div class="cake-art-symbol">🎂 🌸 ✨ 🌸 🎂</div>
+          <div class="finale-text-block">
+            <p class="finale-para">
+              May your life be filled with happiness, your dreams come true, and every new day give you a reason to smile.
+            </p>
+            <p class="finale-para">
+              Keep learning, keep growing, and keep being the wonderful person you are.
+            </p>
+            <p class="finale-para">
+              I hope this little surprise makes your birthday a little more memorable.
+            </p>
+            <p class="finale-para highlight-wish">
+              Have an amazing birthday and a fantastic year ahead!
+            </p>
+          </div>
+
+          <div class="signature-block">
+            <div class="friendship-heart-line">💛 • • • 💛 • • • 💛</div>
+            <p class="signature-line">
+              Made with care by your friend, <strong>Abhay 😊</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Functional Ending Buttons -->
+        <div class="finale-actions">
+          <button id="btn-replay-all" class="btn btn-primary btn-sparkle" aria-label="Replay the birthday surprise">
+            Replay the Birthday Surprise 🔄
+          </button>
+          <button id="btn-view-gallery-direct" class="btn btn-secondary" aria-label="View photo memories again">
+            View the Photo Memories 📸
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FULLSCREEN PHOTO LIGHTBOX MODAL           -->
+  <!-- ========================================== -->
+  <div id="photo-lightbox" class="lightbox-modal hidden" role="dialog" aria-modal="true" aria-label="Full-screen photo viewer">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-dialog">
+      <!-- Close Button -->
+      <button id="lightbox-close-btn" class="lightbox-btn close-btn" aria-label="Close photo viewer">
+        ✕
+      </button>
+
+      <!-- Main Image Display -->
+      <div class="lightbox-media-container" id="lightbox-media">
+        <img id="lightbox-img" src="" alt="Sudha Kumari Memory" class="lightbox-image">
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button id="lightbox-prev-btn" class="lightbox-nav-btn prev" aria-label="Previous photo">
+        ‹
+      </button>
+      <button id="lightbox-next-btn" class="lightbox-nav-btn next" aria-label="Next photo">
+        ›
+      </button>
+
+      <!-- Lightbox Caption & Counter -->
+      <div class="lightbox-caption-box">
+        <div class="lightbox-counter" id="lightbox-counter">Photo 1 of 10</div>
+        <p class="lightbox-caption-text" id="lightbox-caption-text">Sudha's Special Moment</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toast-message" class="toast-popup hidden"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
